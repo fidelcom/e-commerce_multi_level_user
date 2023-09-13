@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Subadmin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubAdminController extends Controller
 {
@@ -56,10 +58,21 @@ class SubAdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show the form for creating a new resource.
      */
-    public function destroy(string $id)
+    public function login()
     {
-        //
+        return view('subadmin.subadmin_login');
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/sub-admin/login');
     }
 }

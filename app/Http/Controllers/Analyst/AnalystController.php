@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Analyst;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnalystController extends Controller
 {
@@ -55,11 +57,19 @@ class AnalystController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function login()
     {
-        //
+        return view('analyst.analyst_login');
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/analyst/login');
     }
 }
