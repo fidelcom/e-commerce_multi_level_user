@@ -3,10 +3,14 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Analyst\AnalystController;
 use App\Http\Controllers\Analyst\AnalystProfileController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\ProductCategoryController;
+use App\Http\Controllers\Backend\ProductSubcategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Subadmin\SubAdminController;
 use App\Http\Controllers\Subadmin\SubAdminProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Vendor\VendorController;
 use App\Http\Controllers\Vendor\VendorProfileController;
 use Illuminate\Support\Facades\Route;
@@ -23,12 +27,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return view('frontend.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//user
+Route::middleware(['auth', 'verified'])->group(function (){
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::post('/user/profile/update', [UserController::class, 'update'])->name('user.profile.update');
+    Route::post('/user/change/password', [UserController::class, 'password'])->name('user.change.password');
+    Route::get('/user/logout', [UserController::class, 'destroy'])->name('user.logout');
+});
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -92,3 +104,33 @@ Route::middleware('auth', 'role:analyst')->prefix('/analyst')->group(function ()
 });
 
 require __DIR__.'/auth.php';
+
+//Brand
+Route::middleware('auth', 'role:admin,subadmin')->prefix('/brand')->controller(BrandController::class)->group(function (){
+    Route::get('/all', 'index')->name('all.brand');
+    Route::get('/add', 'create')->name('add.brand');
+    Route::post('/store', 'store')->name('store.brand');
+    Route::get('/edit/{id}', 'edit')->name('edit.brand');
+    Route::post('/update/{id}', 'update')->name('update.brand');
+    Route::get('/delete/{id}', 'destroy')->name('delete.brand');
+});
+
+//Product Category
+Route::middleware('auth', 'role:admin,subadmin')->prefix('/product/category')->controller(ProductCategoryController::class)->group(function (){
+    Route::get('/all', 'index')->name('all.product.category');
+    Route::get('/add', 'create')->name('add.product.category');
+    Route::post('/store', 'store')->name('store.product.category');
+    Route::get('/edit/{id}', 'edit')->name('edit.product.category');
+    Route::post('/update/{id}', 'update')->name('update.product.category');
+    Route::get('/delete/{id}', 'destroy')->name('delete.product.category');
+});
+
+//Product Subcategory
+Route::middleware('auth', 'role:admin,subadmin')->prefix('/product/subcategory')->controller(ProductSubcategoryController::class)->group(function (){
+    Route::get('/all', 'index')->name('all.product.subcategory');
+    Route::get('/add', 'create')->name('add.product.subcategory');
+    Route::post('/store', 'store')->name('store.product.subcategory');
+    Route::get('/edit/{id}', 'edit')->name('edit.product.subcategory');
+    Route::post('/update/{id}', 'update')->name('update.product.subcategory');
+    Route::get('/delete/{id}', 'destroy')->name('delete.product.subcategory');
+});

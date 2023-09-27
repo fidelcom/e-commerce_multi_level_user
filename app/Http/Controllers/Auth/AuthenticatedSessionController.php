@@ -53,7 +53,11 @@ class AuthenticatedSessionController extends Controller
         }
 
 //        return redirect()->intended(RouteServiceProvider::HOME);
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with([
+            'status' => 'Login successfully!',
+            'message' => 'Login successfully!',
+            'alert-type' => 'success'
+        ]);
     }
 
     /**
