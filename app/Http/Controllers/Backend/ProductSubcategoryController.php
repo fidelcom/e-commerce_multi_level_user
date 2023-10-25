@@ -56,7 +56,8 @@ class ProductSubcategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = ProductSubcategory::where('product_category_id', $id)->orderBy('name', 'ASC')->get();
+        return json_encode($data);
     }
 
     /**

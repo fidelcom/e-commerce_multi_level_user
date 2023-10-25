@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,6 +13,10 @@
     <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <!-- loader-->
     <link href="{{ asset('admin/assets/css/pace.min.css" rel="stylesheet') }}" />
@@ -164,6 +168,7 @@
 <script src="{{ asset('admin/assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/jquery-knob/excanvas.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script>
     $(function() {
         $(".knob").knob();
@@ -217,6 +222,20 @@
         table.buttons().container()
             .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
     } );
+</script>
+<script src="{{ asset('admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('#image-uploadify').imageuploadify();
+    })
+</script>
+
+<script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<script>
+    tinymce.init({
+        selector: '#texteditor'
+    });
 </script>
 </body>
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ProductSubcategory extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -18,8 +18,13 @@ class ProductSubcategory extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
-    public function product() : HasMany
+    public function product_subcategory() : BelongsTo
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(ProductSubcategory::class);
+    }
+
+    public function multiImage() : HasMany
+    {
+        return $this->hasMany(MultiImage::class);
     }
 }

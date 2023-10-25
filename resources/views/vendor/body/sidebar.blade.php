@@ -18,6 +18,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+        @if(auth()->user()->status === 'active')
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -324,6 +325,7 @@
                 <div class="menu-title">Documentation</div>
             </a>
         </li>
+        @endif
         <li>
             <a href="https://themeforest.net/user/codervent" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Register</title>
+    <title>Become Vendor</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="/" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Pages <span></span> My Account
+                <span></span> Pages <span></span> Become Vendor
             </div>
         </div>
     </div>
@@ -45,13 +45,13 @@
                             <div class="login_wrap widget-taber-content background-white">
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
-                                        <h1 class="mb-5">Create an Account</h1>
-                                        <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
+                                        <h1 class="mb-5">Become a Vendor</h1>
+                                        <p class="mb-30">Already have a Vendor? <a href="{{ route('vendor.login') }}">Login</a></p>
                                     </div>
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('vendor.register') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" required="" name="name" id="name" placeholder="Name" />
+                                            <input type="text" required="" name="name" id="name" placeholder="Shop Name" />
                                             @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="form-group">
@@ -59,9 +59,25 @@
                                             @error('username')<span class="text-danger">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="email" id="email" placeholder="Email" />
+                                            <input type="email" required="" name="email" id="email" placeholder="Email" />
                                             @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                                         </div>
+                                        <div class="form-group">
+                                            <input type="text" required="" name="phone" id="phone" placeholder="Phone Number" />
+                                            @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-select mb-3" aria-label="" name="vendor_join">
+                                                <option selected="">Open this select Join date</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                            </select>
+                                            @error('vendor_join')<span class="text-danger">{{ $message }}</span>@enderror
+                                        </div>
+
                                         <div class="form-group">
                                             <input required="" type="password" name="password" id="password" placeholder="Password" />
                                             @error('password')<span class="text-danger">{{ $message }}</span>@enderror
@@ -69,27 +85,6 @@
                                         <div class="form-group">
                                             <input required="" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" />
                                         </div>
-{{--                                        <div class="login_footer form-group">--}}
-{{--                                            <div class="chek-form">--}}
-{{--                                                <input type="text" required="" name="email" placeholder="Security code *" />--}}
-{{--                                            </div>--}}
-{{--                                            <span class="security-code">--}}
-{{--                                                    <b class="text-new">8</b>--}}
-{{--                                                    <b class="text-hot">6</b>--}}
-{{--                                                    <b class="text-sale">7</b>--}}
-{{--                                                    <b class="text-best">5</b>--}}
-{{--                                                </span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="payment_option mb-50">--}}
-{{--                                            <div class="custome-radio">--}}
-{{--                                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" checked="" />--}}
-{{--                                                <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">I am a customer</label>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="custome-radio">--}}
-{{--                                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios4" checked="" />--}}
-{{--                                                <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">I am a vendor</label>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">
                                                 <div class="custome-checkbox">
