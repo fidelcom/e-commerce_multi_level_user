@@ -27,4 +27,14 @@ class Product extends Model
     {
         return $this->hasMany(MultiImage::class);
     }
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function brand() : BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

@@ -3,13 +3,17 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Analyst\AnalystController;
 use App\Http\Controllers\Analyst\AnalystProfileController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductMultiImageController;
 use App\Http\Controllers\Backend\ProductStatuController;
 use App\Http\Controllers\Backend\ProductSubcategoryController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\VendorManagementController;
+use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Subadmin\SubAdminController;
@@ -64,6 +68,10 @@ Route::middleware('auth', 'role:admin')->prefix('/admin')->group(function () {
     Route::post('/profile/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::get('/profile/change/password', [AdminProfileController::class, 'show'])->name('admin.change.password');
     Route::post('/profile/change/password/store', [AdminProfileController::class, 'store'])->name('admin.change.password.store');
+
+    //Slider
+    Route::resource('/slider', SliderController::class);
+    Route::resource('/banner', BannerController::class);
 });
 
 //Vendor
@@ -80,6 +88,31 @@ Route::middleware('auth', 'role:vendor')->prefix('/vendor')->group(function () {
     Route::post('/profile/update', [VendorProfileController::class, 'update'])->name('vendor.profile.update');
     Route::get('/profile/change/password', [VendorProfileController::class, 'show'])->name('vendor.change.password');
     Route::post('/profile/change/password/store', [VendorProfileController::class, 'store'])->name('vendor.change.password.store');
+
+    //Product management
+    Route::prefix('/product')->controller(VendorProductController::class)
+        ->group(function (){
+            Route::get('/all', 'index')->name('vendor.all.product');
+            Route::get('/add', 'create')->name('vendor.add.product');
+            Route::post('/store', 'store')->name('vendor.store.product');
+            Route::get('/show/{id}', 'show')->name('show.vendor.product.subcategory');
+            Route::get('/edit/{id}', 'edit')->name('vendor.edit.product');
+            Route::post('/update/{id}', 'update')->name('vendor.update.product');
+            Route::post('/update/thumbnail/{id}', 'updateThumbnail')->name('vendor.update.product.thumbnail');
+            Route::get('/delete/{id}', 'destroy')->name('vendor.delete.product');
+        });
+    //Product management multiple image
+    Route::prefix('/product')->controller(ProductMultiImageController::class)
+        ->group(function (){
+            Route::post('/update/multi/image/{id}', 'update')->name('vendor.update.product.multi.image');
+            Route::post('/add/multi/image/{id}', 'store')->name('vendor.add.product.multi.image');
+            Route::get('/delete/multi/image{id}', 'destroy')->name('vendor.delete.product.multi.image');
+        });
+    //Product status update
+    Route::prefix('/product')->controller(ProductStatuController::class)
+        ->group(function (){
+            Route::get('/update/status/{id}', 'status')->name('vendor.product.change.status');
+        });
 });
 
 //Sub-admin
@@ -176,3 +209,11 @@ Route::middleware('auth', 'role:admin,subadmin')->prefix('/product')
     ->controller(ProductStatuController::class)->group(function (){
         Route::get('/update/status/{id}', 'status')->name('product.change.status');
     });
+
+//Frontend product routes
+Route::get('product/details/{id}/{slug}', [IndexController::class, 'productDetails']);
+Route::get('product/category/{id}/{slug}', [IndexController::class, 'catWise']);
+Route::get('product/subcategory/{id}/{slug}', [IndexController::class, 'subcatWise']);
+Route::get('/product/shop', [IndexController::class, 'shop'])->name('shop');
+Route::get('vendor/details/{id}', [IndexController::class, 'vendorDetails'])->name('vendor.details');
+Route::get('vendor/list', [IndexController::class, 'vendorList'])->name('vendor.list');

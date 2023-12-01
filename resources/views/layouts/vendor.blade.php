@@ -12,6 +12,12 @@
     <link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet') }}" />
     <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <!-- loader-->
     <link href="{{ asset('admin/assets/css/pace.min.css" rel="stylesheet') }}" />
     <script src="{{ asset('admin/assets/js/pace.min.js') }}"></script>
@@ -162,12 +168,14 @@
 <script src="{{ asset('admin/assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/jquery-knob/excanvas.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script>
     $(function() {
         $(".knob").knob();
     });
 </script>
 <script src="{{ asset('admin/assets/js/index.js') }}"></script>
+<script src="{{ asset('admin/assets/js/validate.min.js') }}"></script>
 <!--app JS-->
 <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -196,7 +204,39 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script src="{{ asset('backend/assets/js/code.js') }}"></script>
+<script src="{{ asset('admin/assets/js/code.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+<script>
+    $(document).ready(function() {
+        var table = $('#example2').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'print']
+        } );
+
+        table.buttons().container()
+            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+    } );
+</script>
+<script src="{{ asset('admin/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('#image-uploadify').imageuploadify();
+    })
+</script>
+
+<script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<script>
+    tinymce.init({
+        selector: '#texteditor'
+    });
+</script>
 </body>
 
 </html>

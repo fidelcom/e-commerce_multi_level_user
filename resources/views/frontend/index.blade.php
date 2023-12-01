@@ -39,7 +39,7 @@
 
     <!-- Tshirt Category -->
 
-    @include('frontend.home_component.tshirt_category')
+{{--    @include('frontend.home_component.tshirt_category')--}}
     <!--End Tshirt Category -->
 
 
@@ -51,7 +51,7 @@
 
     <!-- Computer Category -->
 
-    @include('frontend.home_component.computer_category')
+{{--    @include('frontend.home_component.computer_category')--}}
     <!--End Computer Category -->
 
 

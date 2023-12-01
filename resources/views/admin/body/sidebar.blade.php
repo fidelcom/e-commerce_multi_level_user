@@ -82,12 +82,12 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label">Website Management</li>
         <li>
-            <a href="widgets.html">
+            <a href="{{ route('slider.index') }}">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
-                <div class="menu-title">Widgets</div>
+                <div class="menu-title">Slider Management</div>
             </a>
         </li>
         <li>
@@ -112,14 +112,12 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-repeat"></i>
                 </div>
-                <div class="menu-title">Content</div>
+                <div class="menu-title">Banner Management</div>
             </a>
             <ul>
-                <li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>Grid System</a>
+                <li> <a href="{{ route('banner.index') }}"><i class="bx bx-right-arrow-alt"></i>All Banners</a>
                 </li>
-                <li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Typography</a>
-                </li>
-                <li> <a href="content-text-utilities.html"><i class="bx bx-right-arrow-alt"></i>Text Utilities</a>
+                <li> <a href="{{ route('banner.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
                 </li>
             </ul>
         </li>
