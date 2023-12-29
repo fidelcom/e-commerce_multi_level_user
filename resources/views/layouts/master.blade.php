@@ -6,6 +6,7 @@
     <title>Fidelcom - Multipurpose eCommerce</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -113,6 +114,26 @@
     @endif
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    //Get product
+    function productView(id)
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'product/modal/view/'+id,
+            dataType: 'json',
+            success: function (data)
+            {
+                console.log(data)
+            }
+        })
+    }
+</script>
 </body>
 
 </html>
